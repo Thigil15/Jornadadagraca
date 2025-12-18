@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Jornada da Graça</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #B38B6D;
+            color: white;
+            border-bottom: 3px solid #a17c60;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-6xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Painel de Administração</h1>
+                    <p class="text-gray-600">Gerenciamento do site Jornada da Graça</p>
+                </div>
+                <div>
+                    <span id="admin-email" class="text-sm text-gray-600 mr-4"></span>
+                    <button onclick="logout()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
+                        🚪 Sair
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-lg shadow-md mb-6">
+            <div class="flex border-b">
+                <button onclick="switchTab('comments')" id="tab-comments" class="tab-button active flex-1 px-6 py-4 font-semibold text-center">
+                    💬 Comentários
+                </button>
+                <button onclick="switchTab('contacts')" id="tab-contacts" class="tab-button flex-1 px-6 py-4 font-semibold text-center text-gray-600">
+                    📞 Contatos
+                </button>
+                <button onclick="switchTab('verses')" id="tab-verses" class="tab-button flex-1 px-6 py-4 font-semibold text-center text-gray-600">
+                    📖 Versículos
+                </button>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div id="section-comments" class="tab-content">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex gap-4 mb-4">
+                    <button onclick="loadComments()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                        🔄 Atualizar
+                    </button>
+                    <button onclick="exportCommentsJSON()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+                        📥 Exportar JSON
+                    </button>
+                    <button onclick="clearComments()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
+                        🗑️ Limpar Todos
+                    </button>
+                </div>
+                <div id="comments-stats" class="text-gray-700 font-semibold"></div>
+            </div>
+
+            <div id="comments-container" class="space-y-4">
+                <!-- Comments will be loaded here -->
+            </div>
+
+            <div id="no-comments" class="bg-white rounded-lg shadow-md p-12 text-center hidden">
+                <div class="text-6xl mb-4">💬</div>
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Nenhum comentário recebido ainda</h2>
+                <p class="text-gray-500">Os comentários enviados pelo formulário aparecerão aqui</p>
+            </div>
+        </div>
+
+        <!-- Contacts Section -->
+        <div id="section-contacts" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex gap-4 mb-4">
+                    <button onclick="loadContacts()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                        🔄 Atualizar
+                    </button>
+                    <button onclick="exportContactsJSON()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+                        📥 Exportar JSON
+                    </button>
+                    <button onclick="clearContacts()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
+                        🗑️ Limpar Todos
+                    </button>
+                </div>
+                <div id="contacts-stats" class="text-gray-700 font-semibold"></div>
+            </div>
+
+            <div id="contacts-container" class="space-y-4">
+                <!-- Contacts will be loaded here -->
+            </div>
+
+            <div id="no-contacts" class="bg-white rounded-lg shadow-md p-12 text-center hidden">
+                <div class="text-6xl mb-4">📭</div>
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Nenhum contato recebido ainda</h2>
+                <p class="text-gray-500">Os contatos enviados pelo formulário aparecerão aqui</p>
+            </div>
+        </div>
+
+        <!-- Verses Section -->
+        <div id="section-verses" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex gap-4 mb-4">
+                    <button onclick="loadVerses()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                        🔄 Atualizar
+                    </button>
+                    <button onclick="addNewVerse()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+                        ➕ Adicionar Versículo
+                    </button>
+                    <button onclick="exportVersesJSON()" class="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors">
+                        📥 Exportar JSON
+                    </button>
+                    <button onclick="importVersesJSON()" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
+                        📤 Importar JSON
+                    </button>
+                </div>
+                <div id="verses-stats" class="text-gray-700 font-semibold"></div>
+            </div>
+
+            <div id="verses-container" class="space-y-4">
+                <!-- Verses will be loaded here -->
+            </div>
+
+            <div id="no-verses" class="bg-white rounded-lg shadow-md p-12 text-center hidden">
+                <div class="text-6xl mb-4">📖</div>
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Nenhum versículo cadastrado ainda</h2>
+                <p class="text-gray-500">Adicione versículos para aparecerem no site</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Verse Modal -->
+    <div id="verse-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-gray-800 mb-4">Adicionar Versículo</h2>
+                <form id="verse-form" class="space-y-4">
+                    <div>
+                        <label for="verse-text" class="block text-gray-700 font-semibold mb-2">Texto do Versículo</label>
+                        <textarea id="verse-text" name="text" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                    </div>
+                    <div>
+                        <label for="verse-reference" class="block text-gray-700 font-semibold mb-2">Referência</label>
+                        <input type="text" id="verse-reference" name="reference" placeholder="Ex: João 3:16" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                    </div>
+                    <div>
+                        <label for="verse-message" class="block text-gray-700 font-semibold mb-2">Mensagem/Reflexão</label>
+                        <textarea id="verse-message" name="message" rows="3" placeholder="A mensagem ou reflexão que esse versículo transmite" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                    </div>
+                    <input type="hidden" id="verse-id" name="id">
+                    <div class="flex gap-4 mt-6">
+                        <button type="submit" class="flex-1 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+                            Salvar
+                        </button>
+                        <button type="button" onclick="closeVerseModal()" class="flex-1 px-6 py-3 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition-colors">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="import-file-input" accept=".json" class="hidden">
+
+    <script>
+        // Authentication Check
+        (function checkAuth() {
+            const authToken = sessionStorage.getItem('jornada-admin-auth');
+            if (!authToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                const authData = JSON.parse(authToken);
+                const now = Date.now();
+                
+                // Check if token expired (24 hours)
+                if (authData.expiry < now) {
+                    sessionStorage.removeItem('jornada-admin-auth');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                // Display admin email
+                document.getElementById('admin-email').textContent = `👤 ${authData.email}`;
+            } catch (error) {
+                console.error('Invalid auth token:', error);
+                sessionStorage.removeItem('jornada-admin-auth');
+                window.location.href = 'login.html';
+            }
+        })();
+
+        // Logout function
+        function logout() {
+            if (confirm('Deseja realmente sair do painel de administração?')) {
+                sessionStorage.removeItem('jornada-admin-auth');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Tab switching
+        function switchTab(tab) {
+            const tabs = ['comments', 'contacts', 'verses'];
+            tabs.forEach(t => {
+                const button = document.getElementById(`tab-${t}`);
+                const section = document.getElementById(`section-${t}`);
+                if (t === tab) {
+                    button.classList.add('active');
+                    button.classList.remove('text-gray-600');
+                    section.classList.remove('hidden');
+                } else {
+                    button.classList.remove('active');
+                    button.classList.add('text-gray-600');
+                    section.classList.add('hidden');
+                }
+            });
+            
+            if (tab === 'comments') {
+                loadComments();
+            } else if (tab === 'contacts') {
+                loadContacts();
+            } else if (tab === 'verses') {
+                loadVerses();
+            }
+        }
+
+        // Comments Management
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('jornada-comments') || '[]');
+            const container = document.getElementById('comments-container');
+            const noComments = document.getElementById('no-comments');
+            const stats = document.getElementById('comments-stats');
+
+            if (comments.length === 0) {
+                container.innerHTML = '';
+                noComments.classList.remove('hidden');
+                stats.textContent = '';
+                return;
+            }
+
+            noComments.classList.add('hidden');
+            const approvedCount = comments.filter(c => c.approved).length;
+            const pendingCount = comments.filter(c => !c.approved).length;
+            stats.textContent = `Total: ${comments.length} comentários (${approvedCount} aprovados, ${pendingCount} pendentes)`;
+
+            // Sort by date, most recent first
+            comments.sort((a, b) => new Date(b.dataHora) - new Date(a.dataHora));
+
+            container.innerHTML = comments.map((comment, index) => `
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ${comment.approved ? 'border-l-4 border-green-500' : 'border-l-4 border-yellow-500'}">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">${comment.name}</h3>
+                            <p class="text-sm text-gray-500">${comment.location} • ${new Date(comment.dataHora).toLocaleString('pt-BR')}</p>
+                        </div>
+                        <span class="px-3 py-1 ${comment.approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'} rounded-full text-sm font-semibold">
+                            ${comment.approved ? '✅ Aprovado' : '⏳ Pendente'}
+                        </span>
+                    </div>
+                    <div class="mb-4 p-4 bg-gray-50 rounded border-l-4 border-blue-500">
+                        <p class="text-gray-700 italic">"${comment.text}"</p>
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-sm text-gray-500 mr-2">Avaliação:</span>
+                        <span class="text-xl">
+                            ${Array(5).fill(0).map((_, i) => i < (comment.rating || 5) ? '<span class="text-yellow-400">★</span>' : '<span class="text-gray-300">★</span>').join('')}
+                        </span>
+                        <span class="text-sm text-gray-600 ml-2">(${comment.rating || 5} estrelas)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        ${!comment.approved ? `
+                            <button onclick="approveComment(${index})" class="text-sm px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+                                ✅ Aprovar
+                            </button>
+                        ` : `
+                            <button onclick="disapproveComment(${index})" class="text-sm px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors">
+                                ⏸️ Retirar Aprovação
+                            </button>
+                        `}
+                        <button onclick="deleteComment(${index})" class="text-sm px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
+                            🗑️ Excluir
+                        </button>
+                        <button onclick="copyComment(${index})" class="text-sm px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors">
+                            📋 Copiar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function approveComment(index) {
+            const comments = JSON.parse(localStorage.getItem('jornada-comments') || '[]');
+            comments[index].approved = true;
+            localStorage.setItem('jornada-comments', JSON.stringify(comments));
+            loadComments();
+        }
+
+        function disapproveComment(index) {
+            const comments = JSON.parse(localStorage.getItem('jornada-comments') || '[]');
+            comments[index].approved = false;
+            localStorage.setItem('jornada-comments', JSON.stringify(comments));
+            loadComments();
+        }
+
+        function deleteComment(index) {
+            if (confirm('Deseja excluir este comentário?')) {
+                const comments = JSON.parse(localStorage.getItem('jornada-comments') || '[]');
+                comments.splice(index, 1);
+                localStorage.setItem('jornada-comments', JSON.stringify(comments));
+                loadComments();
+            }
+        }
+
+        function copyComment(index) {
+            const comments = JSON.parse(localStorage.getItem('jornada-comments') || '[]');
+            const comment = comments[index];
+            const text = `Nome: ${comment.name}\nLocalização: ${comment.location}\nComentário: ${comment.text}\nAvaliação: ${comment.rating || 5} estrelas\nStatus: ${comment.approved ? 'Aprovado' : 'Pendente'}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Comentário copiado para a área de transferência!');
+            });
+        }
+
+        function exportCommentsJSON() {
+            const comments = JSON.parse(localStorage.getItem('jornada-comments') || '[]');
+            if (comments.length === 0) {
+                alert('Nenhum comentário para exportar');
+                return;
+            }
+
+            const dataStr = JSON.stringify(comments, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `comentarios-jornada-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearComments() {
+            if (confirm('Tem certeza que deseja excluir TODOS os comentários? Esta ação não pode ser desfeita.')) {
+                if (confirm('ATENÇÃO: Isso irá apagar permanentemente todos os comentários. Deseja exportar antes?')) {
+                    exportCommentsJSON();
+                }
+                localStorage.removeItem('jornada-comments');
+                loadComments();
+            }
+        }
+
+        // Contacts Management
+        function loadContacts() {
+            const contacts = JSON.parse(localStorage.getItem('jornada-contacts') || '[]');
+            const container = document.getElementById('contacts-container');
+            const noContacts = document.getElementById('no-contacts');
+            const stats = document.getElementById('contacts-stats');
+
+            if (contacts.length === 0) {
+                container.innerHTML = '';
+                noContacts.classList.remove('hidden');
+                stats.textContent = '';
+                return;
+            }
+
+            noContacts.classList.add('hidden');
+            stats.textContent = `Total de contatos: ${contacts.length}`;
+
+            // Sort by date, most recent first
+            contacts.sort((a, b) => new Date(b.dataHora) - new Date(a.dataHora));
+
+            container.innerHTML = contacts.map((contact, index) => `
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">${contact.nome}</h3>
+                            <p class="text-sm text-gray-500">${new Date(contact.dataHora).toLocaleString('pt-BR')}</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
+                            ${contact.necessidade}
+                        </span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-semibold text-gray-700">
+                                <a href="mailto:${contact.email}" class="text-blue-600 hover:underline">${contact.email}</a>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Telefone</p>
+                            <p class="font-semibold text-gray-700">
+                                <a href="tel:${contact.telefone}" class="text-blue-600 hover:underline">${contact.telefone}</a>
+                            </p>
+                        </div>
+                    </div>
+                    ${contact.outrosTexto ? `
+                        <div class="mt-4 p-4 bg-gray-50 rounded border-l-4 border-blue-500">
+                            <p class="text-sm text-gray-500 mb-1">Descrição adicional:</p>
+                            <p class="text-gray-700">${contact.outrosTexto}</p>
+                        </div>
+                    ` : ''}
+                    <div class="mt-4 flex gap-2">
+                        <button onclick="deleteContact(${index})" class="text-sm px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">
+                            Excluir
+                        </button>
+                        <button onclick="copyContact(${index})" class="text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors">
+                            Copiar dados
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function exportContactsJSON() {
+            const contacts = JSON.parse(localStorage.getItem('jornada-contacts') || '[]');
+            if (contacts.length === 0) {
+                alert('Nenhum contato para exportar');
+                return;
+            }
+
+            const dataStr = JSON.stringify(contacts, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `contatos-jornada-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearContacts() {
+            if (confirm('Tem certeza que deseja excluir TODOS os contatos? Esta ação não pode ser desfeita.')) {
+                if (confirm('ATENÇÃO: Isso irá apagar permanentemente todos os contatos. Deseja exportar antes?')) {
+                    exportContactsJSON();
+                }
+                localStorage.removeItem('jornada-contacts');
+                loadContacts();
+            }
+        }
+
+        function deleteContact(index) {
+            if (confirm('Deseja excluir este contato?')) {
+                const contacts = JSON.parse(localStorage.getItem('jornada-contacts') || '[]');
+                contacts.splice(index, 1);
+                localStorage.setItem('jornada-contacts', JSON.stringify(contacts));
+                loadContacts();
+            }
+        }
+
+        function copyContact(index) {
+            const contacts = JSON.parse(localStorage.getItem('jornada-contacts') || '[]');
+            const contact = contacts[index];
+            const text = `Nome: ${contact.nome}\nEmail: ${contact.email}\nTelefone: ${contact.telefone}\nNecessidade: ${contact.necessidade}\n${contact.outrosTexto ? 'Descrição: ' + contact.outrosTexto : ''}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Dados copiados para a área de transferência!');
+            });
+        }
+
+        // Verses Management
+        async function loadVerses() {
+            try {
+                const response = await fetch('versiculos.json');
+                let verses = await response.json();
+                
+                // Also check localStorage for any local edits
+                const localVerses = localStorage.getItem('jornada-verses-local');
+                if (localVerses) {
+                    verses = JSON.parse(localVerses);
+                }
+                
+                const container = document.getElementById('verses-container');
+                const noVerses = document.getElementById('no-verses');
+                const stats = document.getElementById('verses-stats');
+
+                if (verses.length === 0) {
+                    container.innerHTML = '';
+                    noVerses.classList.remove('hidden');
+                    stats.textContent = '';
+                    return;
+                }
+
+                noVerses.classList.add('hidden');
+                stats.textContent = `Total de versículos: ${verses.length}`;
+
+                container.innerHTML = verses.map((verse, index) => `
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-blue-500">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-800">${verse.reference}</h3>
+                                <p class="text-sm text-gray-500">ID: ${verse.id}</p>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
+                                Versículo ${index + 1}
+                            </span>
+                        </div>
+                        <div class="mb-4 p-4 bg-gray-50 rounded border-l-4 border-purple-500">
+                            <p class="text-gray-700 italic">"${verse.text}"</p>
+                        </div>
+                        <div class="mb-4 p-4 bg-blue-50 rounded">
+                            <p class="text-sm text-gray-500 mb-1 font-semibold">Mensagem/Reflexão:</p>
+                            <p class="text-gray-700">${verse.message}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="editVerse(${index})" class="text-sm px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                                ✏️ Editar
+                            </button>
+                            <button onclick="deleteVerse(${index})" class="text-sm px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
+                                🗑️ Excluir
+                            </button>
+                            <button onclick="copyVerse(${index})" class="text-sm px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors">
+                                📋 Copiar
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Erro ao carregar versículos:', error);
+                alert('Erro ao carregar versículos. Verifique se o arquivo versiculos.json existe.');
+            }
+        }
+
+        function addNewVerse() {
+            document.getElementById('modal-title').textContent = 'Adicionar Versículo';
+            document.getElementById('verse-form').reset();
+            document.getElementById('verse-id').value = '';
+            document.getElementById('verse-modal').classList.remove('hidden');
+        }
+
+        function editVerse(index) {
+            const localVerses = localStorage.getItem('jornada-verses-local');
+            let verses = [];
+            
+            if (localVerses) {
+                verses = JSON.parse(localVerses);
+            } else {
+                // Load from default JSON if no local edits
+                fetch('versiculos.json')
+                    .then(r => r.json())
+                    .then(data => {
+                        const verse = data[index];
+                        populateVerseForm(verse, index);
+                    });
+                return;
+            }
+            
+            const verse = verses[index];
+            populateVerseForm(verse, index);
+        }
+
+        function populateVerseForm(verse, index) {
+            document.getElementById('modal-title').textContent = 'Editar Versículo';
+            document.getElementById('verse-text').value = verse.text;
+            document.getElementById('verse-reference').value = verse.reference;
+            document.getElementById('verse-message').value = verse.message;
+            document.getElementById('verse-id').value = index;
+            document.getElementById('verse-modal').classList.remove('hidden');
+        }
+
+        function closeVerseModal() {
+            document.getElementById('verse-modal').classList.add('hidden');
+        }
+
+        document.getElementById('verse-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                text: document.getElementById('verse-text').value,
+                reference: document.getElementById('verse-reference').value,
+                message: document.getElementById('verse-message').value
+            };
+            
+            const editIndex = document.getElementById('verse-id').value;
+            
+            // Load current verses
+            let verses = [];
+            const localVerses = localStorage.getItem('jornada-verses-local');
+            
+            if (localVerses) {
+                verses = JSON.parse(localVerses);
+            } else {
+                const response = await fetch('versiculos.json');
+                verses = await response.json();
+            }
+            
+            if (editIndex !== '') {
+                // Edit existing verse
+                verses[editIndex] = { ...verses[editIndex], ...formData };
+            } else {
+                // Add new verse
+                const newId = verses.length > 0 ? Math.max(...verses.map(v => v.id)) + 1 : 1;
+                formData.id = newId;
+                verses.push(formData);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('jornada-verses-local', JSON.stringify(verses));
+            
+            closeVerseModal();
+            loadVerses();
+            alert('Versículo salvo com sucesso!');
+        });
+
+        function deleteVerse(index) {
+            if (!confirm('Deseja excluir este versículo?')) return;
+            
+            const localVerses = localStorage.getItem('jornada-verses-local');
+            let verses = [];
+            
+            if (localVerses) {
+                verses = JSON.parse(localVerses);
+            } else {
+                fetch('versiculos.json')
+                    .then(r => r.json())
+                    .then(data => {
+                        data.splice(index, 1);
+                        localStorage.setItem('jornada-verses-local', JSON.stringify(data));
+                        loadVerses();
+                    });
+                return;
+            }
+            
+            verses.splice(index, 1);
+            localStorage.setItem('jornada-verses-local', JSON.stringify(verses));
+            loadVerses();
+        }
+
+        function copyVerse(index) {
+            const localVerses = localStorage.getItem('jornada-verses-local');
+            let verses = [];
+            
+            if (localVerses) {
+                verses = JSON.parse(localVerses);
+                const verse = verses[index];
+                const text = `Referência: ${verse.reference}\nTexto: ${verse.text}\nMensagem: ${verse.message}`;
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Versículo copiado para a área de transferência!');
+                });
+            } else {
+                fetch('versiculos.json')
+                    .then(r => r.json())
+                    .then(data => {
+                        const verse = data[index];
+                        const text = `Referência: ${verse.reference}\nTexto: ${verse.text}\nMensagem: ${verse.message}`;
+                        navigator.clipboard.writeText(text).then(() => {
+                            alert('Versículo copiado para a área de transferência!');
+                        });
+                    });
+            }
+        }
+
+        function exportVersesJSON() {
+            const localVerses = localStorage.getItem('jornada-verses-local');
+            let verses = [];
+            
+            if (localVerses) {
+                verses = JSON.parse(localVerses);
+                exportVersesData(verses);
+            } else {
+                fetch('versiculos.json')
+                    .then(r => r.json())
+                    .then(data => exportVersesData(data));
+            }
+        }
+
+        function exportVersesData(verses) {
+            if (verses.length === 0) {
+                alert('Nenhum versículo para exportar');
+                return;
+            }
+
+            const dataStr = JSON.stringify(verses, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `versiculos-jornada-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importVersesJSON() {
+            document.getElementById('import-file-input').click();
+        }
+
+        document.getElementById('import-file-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const verses = JSON.parse(e.target.result);
+                    if (!Array.isArray(verses)) {
+                        alert('Arquivo JSON inválido. Deve ser um array de versículos.');
+                        return;
+                    }
+                    
+                    // Validate verse structure
+                    const isValid = verses.every(v => v.text && v.reference && v.message);
+                    if (!isValid) {
+                        alert('Alguns versículos estão com estrutura inválida. Cada versículo deve ter: text, reference e message.');
+                        return;
+                    }
+                    
+                    localStorage.setItem('jornada-verses-local', JSON.stringify(verses));
+                    loadVerses();
+                    alert('Versículos importados com sucesso!');
+                } catch (error) {
+                    alert('Erro ao importar arquivo JSON: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            const activeTab = document.querySelector('.tab-button.active').id.replace('tab-', '');
+            if (activeTab === 'comments') {
+                loadComments();
+            } else if (activeTab === 'contacts') {
+                loadContacts();
+            } else if (activeTab === 'verses') {
+                loadVerses();
+            }
+        }, 30000);
+
+        // Load on page load
+        loadComments();
+    </script>
+</body>
+</html>
