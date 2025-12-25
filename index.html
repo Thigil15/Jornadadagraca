@@ -800,7 +800,7 @@
                         verses = JSON.parse(localVerses);
                     } else {
                         // Load verses from external JSON file
-                        const response = await fetch('versiculos.json');
+                        const response = await fetch('data/versiculos.json');
                         verses = await response.json();
                     }
                     
