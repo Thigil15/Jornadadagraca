@@ -1,57 +1,200 @@
-RecomecoComCristo - Jornada da Graça
+# 🙏 Jornada da Graça - Recomeço com Cristo
 
-Este repositório contém o código-fonte de uma Single Page Application (SPA) interativa, projetada para apresentar a mensagem cristã sobre graça e recomeço de uma forma moderna, envolvente e otimizada para dispositivos móveis.
+[![GitHub](https://img.shields.io/github/license/Thigil15/Jornadadagraca)](LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Thigil15/Jornadadagraca)](https://github.com/Thigil15/Jornadadagraca/commits)
 
-Visão Geral do Projeto
+Uma Single Page Application (SPA) interativa que apresenta a mensagem cristã sobre graça, perdão e recomeço de forma moderna e envolvente, otimizada para dispositivos móveis.
 
-O projeto "Jornada da Graça" nasceu da necessidade de transformar um panfleto evangelístico tradicional em uma experiência digital imersiva. O objetivo é capturar a atenção do usuário, que muitas vezes acessa a página através de um QR Code, e guiá-lo por uma jornada de reflexão pessoal.
+## 📖 Sobre o Projeto
+
+O projeto "Jornada da Graça" nasceu da necessidade de transformar um panfleto evangelístico tradicional em uma experiência digital imersiva. O objetivo é capturar a atenção do usuário (geralmente através de um QR Code) e guiá-lo por uma jornada de reflexão pessoal sobre fé e transformação.
 
 A aplicação foi construída como uma narrativa visual, onde cada seção se baseia na anterior, utilizando técnicas de UI/UX e animações para manter o usuário engajado e focado na mensagem.
 
-Features Principais
+## ✨ Funcionalidades Principais
 
-A aplicação é rica em interações e estilizações construídas com CSS e JavaScript puro para garantir leveza e performance.
+### Para Visitantes
+- **🎯 Jornada Guiada**: Progressão narrativa estruturada (Questionamento → Dilema → Revelação → Benefícios → Ação)
+- **💫 Animações de Entrada**: Elementos surgem suavemente conforme o usuário rola a página
+- **📝 Título Animado**: Revelação palavra por palavra para impacto visual
+- **🎨 Efeito Tilt 3D**: Cartões com inclinação 3D que respondem ao movimento do mouse (desktop)
+- **🗑️ Interação Simbólica**: "Descarte" visual dos pesos do passado ao clicar nos cartões
+- **🎁 Galeria Interativa**: Cartões expansíveis que revelam os benefícios da graça
+- **⌨️ Animação de Máquina de Escrever**: Oração final "digitada" após confirmação do usuário
+- **🧭 Navegação de Progresso**: Menu lateral que indica em qual seção o usuário está
+- **📱 Design Responsivo**: Mobile-first, otimizado para todos os dispositivos
+- **🌈 Fundo Animado**: Gradiente sutil e animado para atmosfera serena
+- **💬 Sistema de Testemunhos**: Usuários podem compartilhar suas experiências
+- **📞 Formulário de Contato**: Para pedidos de oração, estudos bíblicos e visitas
+- **📖 Versículo do Dia**: Rotação diária de versículos bíblicos inspiradores
+- **📤 Compartilhamento Social**: Botões para WhatsApp, Facebook, Twitter, Telegram, Instagram e Email
 
-Jornada Guiada: A estrutura da página não é apenas informativa, mas segue uma progressão narrativa: Questionamento -> Dilema -> Revelação -> Benefícios -> Ação.
+### Para Administradores
+- **🔐 Sistema de Login Seguro**: Autenticação baseada em JSON
+- **💬 Gerenciamento de Testemunhos**: Aprovar, reprovar ou excluir comentários
+- **📞 Gerenciamento de Contatos**: Visualizar e exportar solicitações de contato
+- **📖 Gerenciamento de Versículos**: Adicionar, editar, excluir e importar versículos
+- **📊 Estatísticas**: Visualização rápida de pendências e totais
+- **📥 Exportação de Dados**: Download de comentários, contatos e versículos em JSON
+- **🚪 Logout Seguro**: Sessão de 24 horas com renovação automática
 
-Animações de Entrada: Elementos surgem na tela de forma suave conforme o usuário rola a página (IntersectionObserver), direcionando o foco e criando uma experiência dinâmica.
+## 🚀 Tecnologias Utilizadas
 
-Título Animado: O título principal é revelado palavra por palavra para um impacto visual imediato.
+- **HTML5**: Estrutura semântica do conteúdo
+- **CSS3**: 
+  - Tailwind CSS para estilização rápida e responsividade
+  - CSS customizado para animações (@keyframes) e efeitos visuais avançados
+- **JavaScript (ES6+)**:
+  - Vanilla JS puro para máxima performance
+  - Intersection Observer API para animações no scroll
+  - LocalStorage para persistência de dados
+  - SessionStorage para autenticação
+- **PWA (Progressive Web App)**:
+  - Service Worker para cache offline
+  - Manifest.json para instalação no dispositivo
 
-Efeito Tilt 3D (Desktop): Na seção "O Peso do Passado", os cartões possuem um efeito de inclinação 3D que responde ao movimento do mouse, criando uma sensação de profundidade.
+## 📁 Estrutura do Projeto
 
-Interação Simbólica: O usuário "descarta" os pesos do passado ao clicar nos cartões, que se esmaecem, reforçando a mensagem de libertação.
+```
+Jornadadagraca/
+├── index.html              # Página principal da aplicação
+├── admin.html              # Página de redirecionamento para admin
+├── manifest.json           # Configuração PWA
+├── service-worker.js       # Service worker para PWA
+├── .gitignore             # Arquivos ignorados pelo Git
+├── README.md              # Este arquivo
+├── CONTATOS.md            # Informações de contato
+│
+├── data/                  # Dados da aplicação
+│   ├── admin-credentials.json    # Credenciais de administrador
+│   ├── comentarios.json          # Testemunhos aprovados
+│   └── versiculos.json           # Base de versículos bíblicos
+│
+├── src/                   # Código fonte
+│   └── admin/            # Painel administrativo
+│       ├── login.html    # Página de login
+│       └── admin.html    # Painel de administração
+│
+└── docs/                  # Documentação adicional (opcional)
+```
 
-Galeria de Dons Interativa: A antiga seção de "acordeão" foi substituída por uma galeria de cartões interativos que se expandem de forma elegante ao toque, revelando os benefícios da graça.
+## 🔧 Como Utilizar
 
-Animação de "Máquina de Escrever": A oração final é "digitada" na tela após um clique de confirmação do usuário, criando um momento de decisão e foco.
+### Instalação Local
 
-Navegação de Progresso: Um menu lateral discreto acompanha o progresso do usuário pela jornada, indicando em qual seção ele se encontra.
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/Thigil15/Jornadadagraca.git
+   cd Jornadadagraca
+   ```
 
-Design Responsivo (Mobile First): Toda a experiência foi desenhada primariamente para celulares, garantindo legibilidade e usabilidade perfeitas em telas pequenas.
+2. **Abra o arquivo principal**:
+   - Abra `index.html` em qualquer navegador moderno
+   - Não há necessidade de build ou instalação de dependências
 
-Fundo Animado: Um sutil gradiente animado no background cria uma atmosfera serena e visualmente agradável.
+### Acesso Online
 
-Tecnologias Utilizadas
+Acesse diretamente através do GitHub Pages:
+```
+https://thigil15.github.io/Jornadadagraca/
+```
 
-Este projeto foi construído com foco em performance e simplicidade, utilizando tecnologias web nativas.
+## 🔐 Painel de Administração
 
-HTML5: Para a estrutura semântica do conteúdo.
+### Acesso ao Admin
 
-CSS3:
+1. Acesse `admin.html` ou navegue para `src/admin/login.html`
+2. Use as credenciais de administrador configuradas em `data/admin-credentials.json`
+3. Por padrão:
+   - **Email**: thiago.dias@hc.fm.usp.br
+   - **Senha**: Jesus1508@
 
-Tailwind CSS: Framework utilitário para agilidade na estilização e responsividade.
+### Funcionalidades do Admin
 
-CSS Customizado: Animações (@keyframes), transições e efeitos visuais avançados.
+#### Gerenciamento de Testemunhos
+- Visualize todos os testemunhos enviados
+- Aprove ou reprove comentários para exibição pública
+- Exclua comentários inadequados
+- Exporte todos os testemunhos em JSON
 
-JavaScript (ES6+):
+#### Gerenciamento de Contatos
+- Visualize solicitações de contato
+- Veja detalhes (nome, email, telefone, necessidade)
+- Exporte contatos em JSON para CRM
 
-Vanilla JS: Todo o dinamismo e interatividade são controlados com JavaScript puro, sem a necessidade de frameworks pesados, garantindo um carregamento rápido.
+#### Gerenciamento de Versículos
+- Adicione novos versículos bíblicos
+- Edite versículos existentes
+- Exclua versículos
+- Importe/exporte listas de versículos em JSON
 
-Intersection Observer API: Para gerenciar as animações que ocorrem durante o scroll da página.
+### Segurança
 
-Como Utilizar
+- ⚠️ **IMPORTANTE**: As credenciais estão armazenadas em JSON simples. Para produção, considere:
+  - Mover credenciais para backend seguro
+  - Implementar hash de senhas (bcrypt)
+  - Adicionar HTTPS obrigatório
+  - Implementar rate limiting
+  - Adicionar autenticação de dois fatores
 
-Por ser uma aplicação self-contained, basta abrir o arquivo Index.html em qualquer navegador moderno. Não há dependências externas para instalar ou processos de build.
+## 🎨 Paleta de Cores
 
-Este README serve como um documento técnico e conceitual do projeto, refletindo a atenção aos detalhes e a busca por uma experiência de usuário de alta qualidade.
+- **Principal**: `#B38B6D` (Serene Dawn)
+- **Secundária**: `#a17c60`
+- **Background**: Gradiente entre `#FDFBF8`, `#F8F6F2`, `#EAE3D9`
+- **Texto**: `#4A4A4A` e `#3A3A3A`
+
+## 📱 Progressive Web App (PWA)
+
+A aplicação pode ser instalada como um app nativo:
+
+1. Abra o site no navegador móvel
+2. Toque em "Adicionar à tela inicial"
+3. O app ficará disponível como um ícone no seu dispositivo
+
+Funciona offline após a primeira visita!
+
+## 🌐 Deployment
+
+### GitHub Pages
+
+1. Faça push das alterações para o branch `main`
+2. Vá em Settings → Pages
+3. Selecione o branch `main` como source
+4. O site estará disponível em `https://[seu-usuario].github.io/Jornadadagraca/`
+
+### Netlify
+
+1. Conecte seu repositório GitHub ao Netlify
+2. Configure:
+   - Build command: (deixe vazio)
+   - Publish directory: `/`
+3. Deploy automático a cada push
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 👥 Autor
+
+- **Thiago Dias** - [GitHub](https://github.com/Thigil15)
+
+## 🙏 Agradecimentos
+
+- Comunidade cristã pela inspiração
+- Todos que compartilham sua fé através desta plataforma
+- Colaboradores e contribuidores do projeto
+
+---
+
+**Que esta jornada toque corações e transforme vidas! 🙏✨**
