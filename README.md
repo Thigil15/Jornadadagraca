@@ -580,12 +580,59 @@ Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](L
 
 ---
 
-## 🙏 Agradecimentos
+## 📚 Documentação Adicional
 
-- Comunidade cristã pela inspiração
-- Todos que compartilham sua fé através desta plataforma
-- Colaboradores e contribuidores do projeto
+Este projeto possui documentação completa e profissional:
+
+### 📖 Documentos Principais
+
+- **[📘 README.md](README.md)** - Este documento (visão geral completa)
+- **[📜 LICENSE](LICENSE)** - Licença MIT do projeto
+- **[🤝 CONTRIBUTING.md](CONTRIBUTING.md)** - Como contribuir
+- **[📋 CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** - Código de conduta
+- **[📝 CHANGELOG.md](CHANGELOG.md)** - Histórico de versões
+- **[🔒 SECURITY.md](SECURITY.md)** - Política de segurança
+- **[📞 CONTATOS.md](CONTATOS.md)** - Gerenciamento de contatos
+
+### 🛠️ Documentação Técnica (docs/)
+
+- **[🏗️ ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Arquitetura técnica detalhada
+- **[🚀 DEPLOYMENT.md](docs/DEPLOYMENT.md)** - Guia completo de deployment
+- **[📸 SCREENSHOTS.md](docs/SCREENSHOTS.md)** - Guia de documentação visual
+- **[📚 docs/README.md](docs/README.md)** - Índice da documentação
+
+### 🎯 Recursos Úteis
+
+- 🌐 [Site Demo](https://thigil15.github.io/Jornadadagraca/)
+- 💻 [Repositório GitHub](https://github.com/Thigil15/Jornadadagraca)
+- 🐛 [Issues](https://github.com/Thigil15/Jornadadagraca/issues)
+- 🔀 [Pull Requests](https://github.com/Thigil15/Jornadadagraca/pulls)
 
 ---
 
-**Que esta jornada toque corações e transforme vidas! 🙏✨**
+## 🙏 Agradecimentos
+
+- **Comunidade cristã** pela inspiração e propósito
+- **Todos que compartilham sua fé** através desta plataforma
+- **Colaboradores e contribuidores** que melhoram o projeto
+- **Usuários e testadores** que reportam bugs e sugerem melhorias
+- **Desenvolvedores de open source** cujas ferramentas usamos
+
+### 💝 Agradecimentos Especiais
+
+- **Tailwind CSS** - Framework CSS incrível
+- **Google Fonts** - Tipografia Inter linda
+- **GitHub** - Hospedagem e ferramentas
+- **MDN Web Docs** - Documentação técnica essencial
+
+---
+
+<div align="center">
+
+### 🌟 **Que esta jornada toque corações e transforme vidas!** 🙏✨
+
+**Feito com ❤️ e fé | Open Source sob Licença MIT**
+
+[⬆ Voltar ao Topo](#-jornada-da-graça---recomeço-com-cristo)
+
+</div>
