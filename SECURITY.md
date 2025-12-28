@@ -60,10 +60,11 @@ Contribuidores que reportam vulnerabilidades de segurança responsavelmente ser�
 **IMPORTANTE**: Esta é uma aplicação client-side com limitações de segurança:
 
 1. **Credenciais Admin**
-   - ❌ Armazenadas em JSON plain text
-   - ❌ Sem hash de senhas
+   - ⚠️ Armazenadas em arquivo JSON local (não versionado)
+   - ❌ Sem hash de senhas (client-side apenas)
    - ❌ Sem criptografia
-   - ⚠️ **Altere credenciais padrão imediatamente**
+   - ✅ Arquivo `data/admin-credentials.json` não é commitado (está no .gitignore)
+   - ⚠️ **Configure suas próprias credenciais fortes antes do primeiro uso**
 
 2. **Autenticação**
    - ❌ Apenas client-side
@@ -236,13 +237,19 @@ Seguimos os princípios de divulgação responsável:
 
 ### Se você usar este projeto:
 
-1. **Altere Credenciais**
-   ```json
-   // Edite data/admin-credentials.json
-   {
-     "email": "seu@email.com",
-     "password": "SuaSenhaForte123!"
-   }
+1. **Configure Credenciais**
+   ```bash
+   # Copie o template e configure suas credenciais
+   cp data/admin-credentials.json.example data/admin-credentials.json
+   
+   # Edite com suas credenciais fortes
+   # Formato:
+   [
+     {
+       "email": "seu@email.com",
+       "password": "SuaSenhaForte123!"
+     }
+   ]
    ```
 
 2. **Use HTTPS**
