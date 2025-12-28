@@ -124,6 +124,11 @@
             try {
                 // Load credentials from JSON file
                 const response = await fetch('./admin-credentials.json');
+                
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar credenciais: ${response.status}`);
+                }
+                
                 const credentials = await response.json();
                 
                 // Verify credentials

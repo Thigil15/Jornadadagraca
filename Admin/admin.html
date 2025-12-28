@@ -471,6 +471,11 @@
         async function loadVerses() {
             try {
                 const response = await fetch('../data/versiculos.json');
+                
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar versículos: ${response.status}`);
+                }
+                
                 let verses = await response.json();
                 
                 // Also check localStorage for any local edits
@@ -590,6 +595,11 @@
                 verses = JSON.parse(localVerses);
             } else {
                 const response = await fetch('../data/versiculos.json');
+                
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar versículos: ${response.status}`);
+                }
+                
                 verses = await response.json();
             }
             
