@@ -1,7 +1,10 @@
-const CACHE_NAME = 'jornada-graca-v1';
+const CACHE_NAME = 'jornada-graca-v2';
 const urlsToCache = [
   '/',
-  '/index.html'
+  '/index.html',
+  '/admin.html',
+  '/Admin/login.html',
+  '/Admin/admin.html'
 ];
 
 // Install Service Worker
