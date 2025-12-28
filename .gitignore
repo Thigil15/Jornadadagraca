@@ -1,6 +1,9 @@
 # Contact data (contains personal information)
 contacts.json
 
+# Sensitive admin credentials - DO NOT COMMIT
+data/admin-credentials.json
+
 # Sensitive data - DO NOT COMMIT
 data/admin-credentials.json.local
 *.env

@@ -76,12 +76,23 @@ cd Jornadadagraca
 
 Para gerenciar testemunhos, contatos e versículos:
 
+**Configuração Inicial:**
+```bash
+# Copie o template de credenciais e configure suas credenciais
+cp data/admin-credentials.json.example data/admin-credentials.json
+# Edite o arquivo data/admin-credentials.json com seu editor preferido
+```
+
+**Acesso:**
 ```
 URL: /src/admin/login.html (ou /admin.html)
-Email padrão: thiago.dias@hc.fm.usp.br
-Senha padrão: Jesus1508@
 
-⚠️ IMPORTANTE: Altere as credenciais em data/admin-credentials.json
+⚠️ IMPORTANTE: As credenciais de acesso (email e senha) estão armazenadas 
+no arquivo data/admin-credentials.json. Configure suas próprias credenciais
+antes do primeiro acesso e mantenha-as em segurança.
+
+⚠️ SEGURANÇA: O arquivo data/admin-credentials.json não deve ser commitado
+no repositório (já está no .gitignore).
 ```
 
 ---
@@ -169,7 +180,7 @@ Jornadadagraca/
 ├── 📄 .gitignore             # Arquivos ignorados pelo Git
 │
 ├── 📂 data/                  # Dados da aplicação (JSON)
-│   ├── admin-credentials.json    # Credenciais de administrador
+│   ├── admin-credentials.json.example  # Template de credenciais (copie para admin-credentials.json)
 │   ├── comentarios.json          # Testemunhos aprovados
 │   └── versiculos.json           # Base de versículos bíblicos
 │
@@ -275,12 +286,28 @@ A experiência é estruturada como uma **narrativa progressiva** em 8 seções:
 
 **URL**: `/admin.html` ou `/src/admin/login.html`
 
-**Credenciais Padrão**:
-```
-Veja o arquivo: data/admin-credentials.json
+**Configuração de Credenciais**:
+```bash
+# Antes do primeiro acesso, configure suas credenciais:
+cp data/admin-credentials.json.example data/admin-credentials.json
+
+# Edite o arquivo e defina seu email e senha
 ```
 
-⚠️ **IMPORTANTE**: Altere as credenciais imediatamente após primeiro acesso!
+**Formato do arquivo data/admin-credentials.json**:
+```json
+[
+  {
+    "email": "seu-email@exemplo.com",
+    "password": "ALTERE_ESTA_SENHA_PARA_UMA_SENHA_FORTE"
+  }
+]
+```
+
+⚠️ **IMPORTANTE**: 
+- Configure credenciais fortes antes do primeiro uso
+- O arquivo data/admin-credentials.json não é versionado (está no .gitignore)
+- Mantenha suas credenciais em segurança e não compartilhe
 
 ### 📊 Dashboard Administrativo
 

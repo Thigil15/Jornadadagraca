@@ -72,8 +72,8 @@ Bem-vindo à documentação completa da **Jornada da Graça**!
 
 1. **Acesso Admin**
    - URL: `/src/admin/login.html`
-   - Credenciais em `data/admin-credentials.json`
-   - Altere as credenciais padrão!
+   - Crie o arquivo `data/admin-credentials.json` a partir do template `.example`
+   - Configure suas próprias credenciais seguras!
 
 2. **Gerenciamento**
    - Testemunhos: Aprovar/reprovar comentários

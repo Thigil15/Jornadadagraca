@@ -31,7 +31,7 @@ Jornadadagraca/
 ├── .gitignore            # Arquivos ignorados pelo Git
 │
 ├── data/                  # Dados da aplicação
-│   ├── admin-credentials.json    # Credenciais admin (JSON simples)
+│   ├── admin-credentials.json.example  # Template de credenciais
 │   ├── comentarios.json          # Base de testemunhos
 │   └── versiculos.json           # Base de versículos bíblicos
 │
@@ -82,7 +82,7 @@ JSON Files (data/) → Fetch API → LocalStorage → DOM Rendering
 **Arquivos de Dados:**
 - `versiculos.json`: Base de versículos bíblicos
 - `comentarios.json`: Testemunhos aprovados iniciais
-- `admin-credentials.json`: Credenciais de acesso admin
+- `admin-credentials.json`: Credenciais de acesso admin (não versionado, usar template .example)
 
 ### 2. Dados do Usuário
 
