@@ -15,8 +15,9 @@ A segurança do projeto Jornada da Graça é levada a sério. Agradecemos seus e
 
 Se você descobrir uma vulnerabilidade de segurança, por favor **NÃO** abra uma issue pública. Em vez disso:
 
-1. **Envie um email privado** para: thiago.dias@hc.fm.usp.br
-2. **Inclua os seguintes detalhes**:
+1. **Entre em contato via GitHub** - Use a aba "Security" do repositório para reportar vulnerabilidades privadamente
+2. **Ou abra uma issue privada** com label "security" (se disponível)
+3. **Inclua os seguintes detalhes**:
    - Tipo de vulnerabilidade
    - Localização do código vulnerável (arquivo e linha, se possível)
    - Passos para reproduzir
@@ -215,8 +216,8 @@ Agradecemos aos seguintes pesquisadores de segurança (lista será atualizada):
 ## 📞 Contato
 
 **Para questões de segurança:**
-- 📧 Email: thiago.dias@hc.fm.usp.br
-- 🔒 Use PGP se possível (chave disponível mediante solicitação)
+- 🔒 Use a aba "Security" do GitHub para reportar vulnerabilidades
+- 🐛 Ou crie uma issue com label `security` (para questões não sensíveis)
 
 **Para outras questões:**
 - 🐛 [Issues do GitHub](https://github.com/Thigil15/Jornadadagraca/issues)

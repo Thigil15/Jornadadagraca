@@ -151,8 +151,8 @@ Bem-vindo à documentação completa da **Jornada da Graça**!
    - [Fazer Pergunta](https://github.com/Thigil15/Jornadadagraca/issues/new?labels=question)
 
 3. **Contato Direto**
-   - Email: thiago.dias@hc.fm.usp.br
    - GitHub: [@Thigil15](https://github.com/Thigil15)
+   - Email: Disponível no perfil do GitHub
 
 ## 🎓 Recursos de Aprendizado
 

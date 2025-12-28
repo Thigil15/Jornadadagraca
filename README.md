@@ -277,11 +277,10 @@ A experiência é estruturada como uma **narrativa progressiva** em 8 seções:
 
 **Credenciais Padrão**:
 ```
-Email: thiago.dias@hc.fm.usp.br
-Senha: Jesus1508@
+Veja o arquivo: data/admin-credentials.json
 ```
 
-⚠️ **Altere imediatamente** em `data/admin-credentials.json` para uso real!
+⚠️ **IMPORTANTE**: Altere as credenciais imediatamente após primeiro acesso!
 
 ### 📊 Dashboard Administrativo
 
@@ -569,7 +568,7 @@ Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](L
 
 **Thiago Dias**
 - 🐙 GitHub: [@Thigil15](https://github.com/Thigil15)
-- 📧 Email: thiago.dias@hc.fm.usp.br
+- 📧 Email: Disponível no perfil do GitHub
 
 ### 💬 Suporte e Comunidade
 
@@ -577,6 +576,7 @@ Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](L
 - 💡 [Solicitar Features](https://github.com/Thigil15/Jornadadagraca/issues/new?labels=enhancement)
 - ❓ [Fazer Perguntas](https://github.com/Thigil15/Jornadadagraca/issues/new?labels=question)
 - 📖 [Ver Documentação](docs/)
+- 📧 Email: Disponível no perfil do GitHub [@Thigil15](https://github.com/Thigil15)
 
 ---
 
