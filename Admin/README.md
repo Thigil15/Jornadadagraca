@@ -4,32 +4,32 @@ Este diretório contém todos os arquivos relacionados ao painel administrativo 
 
 ## 📁 Arquivos
 
-- **`login.html`** - Página de login para acesso ao painel administrativo
+- **`login.html`** - Página de login para acesso ao painel administrativo (credenciais embutidas)
 - **`admin.html`** - Dashboard principal do painel administrativo
-- **`admin-credentials.json.example`** - Template de credenciais (use como exemplo)
-- **`admin-credentials.json`** - Arquivo de credenciais (não versionado no git)
+- **`admin-credentials.json.example`** - Arquivo de exemplo (não mais usado, mantido para referência)
 
 ## 🚀 Configuração Inicial
 
-Antes de usar o painel administrativo pela primeira vez, você precisa configurar suas credenciais:
+As credenciais de acesso estão embutidas diretamente no código do arquivo `login.html`.
 
-### 1. Copie o arquivo de exemplo
+### Credenciais Padrão
 
-```bash
-cp Admin/admin-credentials.json.example Admin/admin-credentials.json
-```
+- **Email**: `admin@jornadadagraca.com`
+- **Senha**: `JornadaDaGraca2024!`
 
-### 2. Edite o arquivo com suas credenciais
+### Como Alterar as Credenciais
 
-Abra o arquivo `Admin/admin-credentials.json` e altere o email e a senha:
+1. Abra o arquivo `Admin/login.html`
+2. Localize a seção de credenciais no código JavaScript (linha ~126)
+3. Altere o email e/ou senha conforme necessário:
 
-```json
-[
-  {
-    "email": "seu-email@exemplo.com",
-    "password": "ALTERE_ESTA_SENHA_PARA_UMA_SENHA_FORTE"
-  }
-]
+```javascript
+const credentials = [
+    {
+        "email": "seu-novo-email@exemplo.com",
+        "password": "SUA_NOVA_SENHA_FORTE"
+    }
+];
 ```
 
 ⚠️ **IMPORTANTE**: Use uma senha forte e mantenha suas credenciais em segurança!
@@ -43,10 +43,11 @@ Após configurar as credenciais, você pode acessar o painel de duas formas:
 
 ## 🔒 Segurança
 
-- ✅ O arquivo `admin-credentials.json` está no `.gitignore` e **não será commitado**
+- ✅ As credenciais estão embutidas no código JavaScript do arquivo `login.html`
 - ✅ As credenciais são verificadas apenas no lado do cliente (client-side)
 - ⚠️ Para uso em produção, considere implementar autenticação server-side
 - ⚠️ Sempre use HTTPS em produção para proteger as credenciais
+- ⚠️ Não compartilhe o arquivo `login.html` publicamente se contiver credenciais sensíveis
 
 ## 📊 Funcionalidades do Painel
 
@@ -109,7 +110,7 @@ O painel carrega versículos do arquivo `../data/versiculos.json`:
 ### Caminhos Relativos
 
 Todos os arquivos admin usam caminhos relativos:
-- **login.html** carrega credenciais de `./admin-credentials.json`
+- **login.html** usa credenciais embutidas no código JavaScript
 - **admin.html** carrega dados de `../data/versiculos.json`
 - Links para o site principal usam `../index.html`
 

@@ -122,14 +122,13 @@
             const errorMessage = document.getElementById('error-message');
             
             try {
-                // Load credentials from JSON file
-                const response = await fetch('./admin-credentials.json');
-                
-                if (!response.ok) {
-                    throw new Error(`Erro ao carregar credenciais: ${response.status}`);
-                }
-                
-                const credentials = await response.json();
+                // Embedded credentials (for production, use environment variables or server-side auth)
+                const credentials = [
+                    {
+                        "email": "admin@jornadadagraca.com",
+                        "password": "JornadaDaGraca2024!"
+                    }
+                ];
                 
                 // Verify credentials
                 const validUser = credentials.find(user => 
