@@ -85,7 +85,7 @@
         </form>
 
         <div class="mt-6 text-center">
-            <a href="../../index.html" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">
+            <a href="../index.html" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">
                 ← Voltar ao site
             </a>
         </div>
@@ -123,7 +123,7 @@
             
             try {
                 // Load credentials from JSON file
-                const response = await fetch('../../data/admin-credentials.json');
+                const response = await fetch('./admin-credentials.json');
                 const credentials = await response.json();
                 
                 // Verify credentials

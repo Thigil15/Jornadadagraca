@@ -470,7 +470,7 @@
         // Verses Management
         async function loadVerses() {
             try {
-                const response = await fetch('../../data/versiculos.json');
+                const response = await fetch('../data/versiculos.json');
                 let verses = await response.json();
                 
                 // Also check localStorage for any local edits
@@ -545,7 +545,7 @@
                 verses = JSON.parse(localVerses);
             } else {
                 // Load from default JSON if no local edits
-                fetch('../../data/versiculos.json')
+                fetch('../data/versiculos.json')
                     .then(r => r.json())
                     .then(data => {
                         const verse = data[index];
@@ -589,7 +589,7 @@
             if (localVerses) {
                 verses = JSON.parse(localVerses);
             } else {
-                const response = await fetch('../../data/versiculos.json');
+                const response = await fetch('../data/versiculos.json');
                 verses = await response.json();
             }
             
@@ -620,7 +620,7 @@
             if (localVerses) {
                 verses = JSON.parse(localVerses);
             } else {
-                fetch('../../data/versiculos.json')
+                fetch('../data/versiculos.json')
                     .then(r => r.json())
                     .then(data => {
                         data.splice(index, 1);
@@ -647,7 +647,7 @@
                     alert('Versículo copiado para a área de transferência!');
                 });
             } else {
-                fetch('../../data/versiculos.json')
+                fetch('../data/versiculos.json')
                     .then(r => r.json())
                     .then(data => {
                         const verse = data[index];
@@ -667,7 +667,7 @@
                 verses = JSON.parse(localVerses);
                 exportVersesData(verses);
             } else {
-                fetch('../../data/versiculos.json')
+                fetch('../data/versiculos.json')
                     .then(r => r.json())
                     .then(data => exportVersesData(data));
             }

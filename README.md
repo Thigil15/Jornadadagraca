@@ -79,19 +79,19 @@ Para gerenciar testemunhos, contatos e versículos:
 **Configuração Inicial:**
 ```bash
 # Copie o template de credenciais e configure suas credenciais
-cp data/admin-credentials.json.example data/admin-credentials.json
-# Edite o arquivo data/admin-credentials.json com seu editor preferido
+cp Admin/admin-credentials.json.example Admin/admin-credentials.json
+# Edite o arquivo Admin/admin-credentials.json com seu editor preferido
 ```
 
 **Acesso:**
 ```
-URL: /src/admin/login.html (ou /admin.html)
+URL: /Admin/login.html (ou /admin.html)
 
 ⚠️ IMPORTANTE: As credenciais de acesso (email e senha) estão armazenadas 
-no arquivo data/admin-credentials.json. Configure suas próprias credenciais
+no arquivo Admin/admin-credentials.json. Configure suas próprias credenciais
 antes do primeiro acesso e mantenha-as em segurança.
 
-⚠️ SEGURANÇA: O arquivo data/admin-credentials.json não deve ser commitado
+⚠️ SEGURANÇA: O arquivo Admin/admin-credentials.json não deve ser commitado
 no repositório (já está no .gitignore).
 ```
 
@@ -179,15 +179,14 @@ Jornadadagraca/
 ├── 📄 CONTATOS.md            # Instruções para acessar contatos
 ├── 📄 .gitignore             # Arquivos ignorados pelo Git
 │
-├── 📂 data/                  # Dados da aplicação (JSON)
+├── 📂 Admin/                 # Painel administrativo
 │   ├── admin-credentials.json.example  # Template de credenciais (copie para admin-credentials.json)
+│   ├── login.html           # Página de login admin
+│   └── admin.html           # Dashboard administrativo
+│
+├── 📂 data/                  # Dados da aplicação (JSON)
 │   ├── comentarios.json          # Testemunhos aprovados
 │   └── versiculos.json           # Base de versículos bíblicos
-│
-├── 📂 src/                   # Código fonte
-│   └── admin/               # Painel administrativo
-│       ├── login.html       # Página de login admin
-│       └── admin.html       # Dashboard administrativo
 │
 └── 📂 docs/                  # Documentação técnica
     ├── DEPLOYMENT.md        # Guia completo de deployment
@@ -284,17 +283,17 @@ A experiência é estruturada como uma **narrativa progressiva** em 8 seções:
 
 ### 🚀 Acesso ao Admin
 
-**URL**: `/admin.html` ou `/src/admin/login.html`
+**URL**: `/admin.html` ou `/Admin/login.html`
 
 **Configuração de Credenciais**:
 ```bash
 # Antes do primeiro acesso, configure suas credenciais:
-cp data/admin-credentials.json.example data/admin-credentials.json
+cp Admin/admin-credentials.json.example Admin/admin-credentials.json
 
 # Edite o arquivo e defina seu email e senha
 ```
 
-**Formato do arquivo data/admin-credentials.json**:
+**Formato do arquivo Admin/admin-credentials.json**:
 ```json
 [
   {
@@ -306,7 +305,7 @@ cp data/admin-credentials.json.example data/admin-credentials.json
 
 ⚠️ **IMPORTANTE**: 
 - Configure credenciais fortes antes do primeiro uso
-- O arquivo data/admin-credentials.json não é versionado (está no .gitignore)
+- O arquivo Admin/admin-credentials.json não é versionado (está no .gitignore)
 - Mantenha suas credenciais em segurança e não compartilhe
 
 ### 📊 Dashboard Administrativo
