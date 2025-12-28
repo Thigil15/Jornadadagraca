@@ -122,6 +122,11 @@
             const errorMessage = document.getElementById('error-message');
             
             try {
+                // ⚠️ SECURITY WARNING: Credentials are hardcoded and visible in the browser source code.
+                // This is suitable ONLY for development/testing or internal sites.
+                // For production, implement server-side authentication with environment variables.
+                // Anyone can view these credentials by checking the page source or using browser DevTools.
+                
                 // Embedded credentials (for production, use environment variables or server-side auth)
                 const credentials = [
                     {

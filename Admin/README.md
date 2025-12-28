@@ -43,11 +43,19 @@ Após configurar as credenciais, você pode acessar o painel de duas formas:
 
 ## 🔒 Segurança
 
+⚠️ **ATENÇÃO CRÍTICA DE SEGURANÇA**: 
+- As credenciais estão **VISÍVEIS** no código-fonte do arquivo `login.html`
+- Qualquer pessoa que acessar o site pode ver as credenciais usando "Ver código-fonte" ou DevTools do navegador
+- Esta é uma solução **apenas para ambiente de desenvolvimento/testes** ou sites internos
+- **NÃO USE EM PRODUÇÃO** com credenciais reais sem implementar autenticação server-side
+
+### Detalhes Técnicos
 - ✅ As credenciais estão embutidas no código JavaScript do arquivo `login.html`
 - ✅ As credenciais são verificadas apenas no lado do cliente (client-side)
-- ⚠️ Para uso em produção, considere implementar autenticação server-side
+- ⚠️ Para uso em produção, **IMPLEMENTE** autenticação server-side
 - ⚠️ Sempre use HTTPS em produção para proteger as credenciais
-- ⚠️ Não compartilhe o arquivo `login.html` publicamente se contiver credenciais sensíveis
+- ⚠️ Mude as credenciais padrão para algo seguro antes de usar
+- ⚠️ Qualquer pessoa com acesso ao site pode ver as credenciais no código-fonte
 
 ## 📊 Funcionalidades do Painel
 
