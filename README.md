@@ -299,7 +299,7 @@ cp data/admin-credentials.json.example data/admin-credentials.json
 [
   {
     "email": "seu-email@exemplo.com",
-    "password": "SuaSenhaSegura123!"
+    "password": "ALTERE_ESTA_SENHA_PARA_UMA_SENHA_FORTE"
   }
 ]
 ```

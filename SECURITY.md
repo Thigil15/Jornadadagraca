@@ -247,7 +247,7 @@ Seguimos os princípios de divulgação responsável:
    [
      {
        "email": "seu@email.com",
-       "password": "SuaSenhaForte123!"
+       "password": "ALTERE_ESTA_SENHA_PARA_UMA_SENHA_FORTE"
      }
    ]
    ```
